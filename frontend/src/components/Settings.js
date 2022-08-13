@@ -71,7 +71,7 @@ class SettingsForm extends React.Component {
             <input
               className="form-control"
               type="text"
-              placeholder="URL of profile picture"
+              placeholder={placeholder}
               value={this.state.image}
               onChange={this.updateState("image")}
             />
