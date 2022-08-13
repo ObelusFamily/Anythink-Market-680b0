@@ -46,7 +46,7 @@ const LoggedInView = (props) => {
               src={props.currentUser.image}
               onError={(event) => {
                 event.target.src = placeholder;
-                event.onerror = null;
+                event.onerror = null || "" || undefined;
               }}
               className="user-pic pr-1"
               alt={props.currentUser.username}
