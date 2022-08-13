@@ -4,7 +4,6 @@ var passport = require("passport");
 var User = mongoose.model("User");
 var auth = require("../auth");
 const { sendEvent } = require("../../lib/event");
-var placeholder = require("../../public/placeholder.png");
 
 router.get("/user", auth.required, function (req, res, next) {
   User.findById(req.payload.id)
@@ -36,7 +35,7 @@ router.put("/user", auth.required, function (req, res, next) {
         user.bio = req.body.user.bio;
       }
       if (typeof req.body.user.image !== "undefined") {
-        user.image = req.body.user.image || placeholder;
+        user.image = req.body.user.image;
       }
       if (typeof req.body.user.password !== "undefined") {
         user.setPassword(req.body.user.password);

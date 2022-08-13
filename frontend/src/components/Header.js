@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../imgs/topbar_logo.png";
+import placeholder from "../imgs/placeholder.png";
 
 const LoggedOutView = (props) => {
   if (!props.currentUser) {
@@ -24,6 +25,18 @@ const LoggedOutView = (props) => {
 };
 
 const LoggedInView = (props) => {
+  let image;
+
+  if (
+    props.currentUser.image === null ||
+    props.currentUser.image === "" ||
+    props.currentUser.image === undefined
+  ) {
+    image = placeholder;
+  } else {
+    image = props.currentUser.image;
+  }
+
   if (props.currentUser) {
     return (
       <ul className="navbar-nav ml-auto">
@@ -42,7 +55,7 @@ const LoggedInView = (props) => {
         <li className="nav-item">
           <Link to={`/@${props.currentUser.username}`} className="nav-link">
             <img
-              src={props.currentUser.image}
+              src={image}
               className="user-pic pr-1"
               alt={props.currentUser.username}
             />
