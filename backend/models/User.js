@@ -3,7 +3,6 @@ var uniqueValidator = require("mongoose-unique-validator");
 var crypto = require("crypto");
 var jwt = require("jsonwebtoken");
 var secret = require("../config").secret;
-var placeholder = require("../public/placeholder.png");
 
 var UserSchema = new mongoose.Schema(
   {
@@ -84,7 +83,8 @@ UserSchema.methods.toProfileJSONFor = function (user) {
   return {
     username: this.username,
     bio: this.bio,
-    image: this.image || placeholder,
+    image:
+      this.image || "https://static.productionready.io/images/smiley-cyrus.jpg",
     following: user ? user.isFollowing(this._id) : false,
   };
 };
