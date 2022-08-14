@@ -7,14 +7,13 @@ import {
   SETTINGS_PAGE_UNLOADED,
   LOGOUT,
 } from "../constants/actionTypes";
-import placeholder from "../imgs/placeholder.png";
 
 class SettingsForm extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      image: placeholder,
+      image: "",
       username: "",
       bio: "",
       email: "",
@@ -42,7 +41,7 @@ class SettingsForm extends React.Component {
   componentWillMount() {
     if (this.props.currentUser) {
       Object.assign(this.state, {
-        image: this.props.currentUser.image,
+        image: this.props.currentUser.image || "",
         username: this.props.currentUser.username,
         bio: this.props.currentUser.bio,
         email: this.props.currentUser.email,
@@ -54,7 +53,7 @@ class SettingsForm extends React.Component {
     if (nextProps.currentUser) {
       this.setState(
         Object.assign({}, this.state, {
-          image: nextProps.currentUser.image,
+          image: nextProps.currentUser.image || "",
           username: nextProps.currentUser.username,
           bio: nextProps.currentUser.bio,
           email: nextProps.currentUser.email,
@@ -71,7 +70,7 @@ class SettingsForm extends React.Component {
             <input
               className="form-control"
               type="text"
-              placeholder={placeholder}
+              placeholder="URL of profile picture"
               value={this.state.image}
               onChange={this.updateState("image")}
             />
