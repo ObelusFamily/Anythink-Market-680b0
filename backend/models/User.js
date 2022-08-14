@@ -3,6 +3,7 @@ var uniqueValidator = require("mongoose-unique-validator");
 var crypto = require("crypto");
 var jwt = require("jsonwebtoken");
 var secret = require("../config").secret;
+var placeholder = require("../public/placeholder.png");
 
 var UserSchema = new mongoose.Schema(
   {
@@ -74,7 +75,7 @@ UserSchema.methods.toAuthJSON = function () {
     email: this.email,
     token: this.generateJWT(),
     bio: this.bio,
-    image: this.image,
+    image: this.image || placeholder,
     role: this.role,
   };
 };
